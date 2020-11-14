@@ -6,7 +6,7 @@ import android.app.IntentService
 import android.app.Service
 import android.content.Context
 import android.os.Bundle
-import com.rzahr.architecture.abstracts.QuickDatabase
+import com.rzahr.architecture.abstracts.Database
 import com.rzahr.architecture.utils.QuickDBUtils
 import java.lang.ref.WeakReference
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import javax.inject.Inject
  * this class is *required* to be created from the application class
  */
 @Suppress("unused")
-class ApplicationHelper @Inject constructor(var quickPref: QuickPref, val database: QuickDatabase, val application: Application): Application.ActivityLifecycleCallbacks {
+class ApplicationHelper @Inject constructor(var quickPref: QuickPref, val database: Database, val application: Application): Application.ActivityLifecycleCallbacks {
 
     init {
         instance = this

@@ -1,6 +1,6 @@
 package com.rzahr.architecture.mvp
 
-import com.rzahr.architecture.abstracts.QuickDatabase
+import com.rzahr.architecture.abstracts.Database
 import javax.inject.Inject
 
 /**
@@ -12,5 +12,5 @@ import javax.inject.Inject
 abstract class MVPModel {
 
     @Inject
-    lateinit var mDatabase: QuickDatabase
+    lateinit var mDatabase: Database
 }

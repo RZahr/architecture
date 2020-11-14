@@ -1,7 +1,7 @@
 package com.rzahr.architecture.mvvm
 
 import com.rzahr.architecture.ApplicationHelper
-import com.rzahr.architecture.abstracts.QuickDatabase
+import com.rzahr.architecture.abstracts.Database
 
 /**
  * @author Rashad Zahr
@@ -10,5 +10,5 @@ import com.rzahr.architecture.abstracts.QuickDatabase
  */
 @Suppress("unused")
 abstract class MVVMModel {
-    var mDatabase: QuickDatabase = ApplicationHelper.database()
+    var mDatabase: Database = ApplicationHelper.database()
 }
