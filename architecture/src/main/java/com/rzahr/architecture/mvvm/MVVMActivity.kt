@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.rzahr.architecture.statusBarAdapt
 
 @Suppress("unused")
 abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, CoroutineScope {
@@ -13,7 +18,7 @@ abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        statusBarAdapt()
        //for custom coroutine job = Job()
     }
 
@@ -46,6 +51,8 @@ abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, 
             completion(it)
         })
     }
+
+
 
     //for custom coroutine override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main
 

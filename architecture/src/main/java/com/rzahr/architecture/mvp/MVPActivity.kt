@@ -2,6 +2,7 @@ package com.rzahr.architecture.mvp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.rzahr.architecture.statusBarAdapt
 import com.rzahr.architecture.utils.MIN_GUARD_INTERVAL
 import javax.inject.Inject
 
@@ -22,6 +23,7 @@ abstract class MVPActivity<P : MVPPresenterInterface<*>>: AppCompatActivity(), M
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        statusBarAdapt()
 
         onActivityInject()
     }
