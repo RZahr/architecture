@@ -74,7 +74,7 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
     }
 
     @Throws(Exception::class)
-    open fun multiSelect(query: String, onResult: (cursor: Cursor) -> Unit, onError: (e: Exception) -> Unit) {
+    fun multiSelect(query: String, onResult: (cursor: Cursor) -> Unit, onError: (e: Exception) -> Unit) {
 
         getDatabase()
         var cursor: Cursor? = null
@@ -100,7 +100,7 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
     }
 
     @Throws(Exception::class)
-    open fun multiHashSelect(query: String, onError: (e: Exception) -> Unit): ArrayList<HashMap<String, String>> {
+    fun multiHashSelect(query: String, onError: (e: Exception) -> Unit): ArrayList<HashMap<String, String>> {
 
         getDatabase()
 
@@ -145,7 +145,7 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
     }
 
     @Throws(Exception::class)
-    open fun multiSelect(query: String, onError: (e: Exception) -> Unit): ArrayList<Array<String>> {
+    fun multiSelect(query: String, onError: (e: Exception) -> Unit): ArrayList<Array<String>> {
 
         getDatabase()
 
@@ -186,7 +186,7 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
     }
 
     @Throws(Exception::class)
-    open fun singleSelect(query: String, increment: Boolean = false, delimiter: String = "", defaultReturn: String = "", args: Array<String> = emptyArray(), onError: (e: Exception) -> Unit = {}): String {
+    fun singleSelect(query: String, increment: Boolean = false, delimiter: String = "", defaultReturn: String = "", args: Array<String> = emptyArray(), onError: (e: Exception) -> Unit = {}): String {
 
         getDatabase()
 
@@ -221,7 +221,7 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
         return returnedValue
     }
 
-    open fun selectCount(tableName: String, whereClause: String = "", onError: (e: Exception) -> Unit): Int {
+    fun selectCount(tableName: String, whereClause: String = "", onError: (e: Exception) -> Unit): Int {
 
         var query = "SELECT COUNT(*) FROM $tableName"
         if (whereClause.trim().isNotEmpty()) query += " WHERE $whereClause"
@@ -229,14 +229,14 @@ class Database @Inject constructor(@ApplicationContext val context: Context) {
         return singleSelect(query, false, "", "0", emptyArray(), onError).toInt()
     }
 
-    open fun valueExist(tableName: String, columnName: String, columnValue: String, onError: (e: Exception) -> Unit): Boolean {
+    fun valueExist(tableName: String, columnName: String, columnValue: String, onError: (e: Exception) -> Unit): Boolean {
 
         val query = "SELECT 1 FROM $tableName WHERE $columnName LIKE $columnValue"
 
         return singleSelect(query, false, "", "0", emptyArray(), onError).toBoolean()
     }
 
-    open fun delete(table: String, where: String, onError: (e: Exception) -> Unit) {
+    fun delete(table: String, where: String, onError: (e: Exception) -> Unit) {
 
         val query = if (where.isNotEmpty()) "DELETE FROM $table WHERE $where"
         else "DELETE FROM $table"

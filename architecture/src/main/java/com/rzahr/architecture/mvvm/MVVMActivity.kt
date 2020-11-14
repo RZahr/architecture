@@ -1,15 +1,10 @@
 package com.rzahr.architecture.mvvm
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
 @Suppress("unused")
 abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, CoroutineScope {
