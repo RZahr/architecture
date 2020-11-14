@@ -10,5 +10,5 @@ import com.rzahr.architecture.abstracts.Database
  */
 @Suppress("unused")
 abstract class MVVMModel {
-    var mDatabase: Database = ApplicationHelper.database()
+    var mDatabase: Database? = ApplicationHelper.database()
 }
