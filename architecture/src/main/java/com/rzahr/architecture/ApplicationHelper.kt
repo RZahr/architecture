@@ -58,7 +58,7 @@ class ApplicationHelper @Inject constructor(var quickPref: QuickPref, val databa
 
         fun pref() = instance!!.quickPref
 
-        fun database() = instance!!.database
+        fun database() = instance?.database
 
         fun currentActivity() = instance?.currentActivity?.get()
 
