@@ -9,6 +9,10 @@ class UseCaseHandler() {
         useCase.run()
     }
 
+    fun <T : UseCase.RequestValues, R : UseCase.ResponseValue> finish(useCase: UseCase<T, R>) {
+        useCase.destroy()
+    }
+
     private fun <V : UseCase.ResponseValue> notifyResponse(response: V, useCaseCallback: UseCase.UseCaseCallback<V>) {
         useCaseCallback.onSuccess(response)
     }
