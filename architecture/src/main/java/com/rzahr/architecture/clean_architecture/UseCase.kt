@@ -10,11 +10,11 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
         execute(requestValues)
     }
 
-    internal fun destroy() {
-        finishUseCase()
+    internal fun onClear() {
+        clearUseCase()
     }
 
-    protected abstract fun finishUseCase()
+    protected abstract fun clearUseCase()
 
     protected abstract fun execute(requestValues: Q?)
 
