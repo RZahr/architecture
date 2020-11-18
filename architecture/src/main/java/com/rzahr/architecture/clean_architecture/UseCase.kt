@@ -36,6 +36,6 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
 
     interface UseCaseCallbackN<R> {
         fun onSuccess(response: R)
-        fun onError(t: LiveDataState.Failure)
+        fun onError(t: Throwable)
     }
 }

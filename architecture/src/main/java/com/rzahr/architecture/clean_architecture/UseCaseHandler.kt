@@ -38,9 +38,9 @@ class UseCaseHandler() {
             liveData.value = LiveDataState.Success(response)
         }
 
-        override fun onError(t: LiveDataState.Failure) {
+        override fun onError(t: Throwable) {
             liveData as MutableLiveData
-            liveData.value = t
+            liveData.value = LiveDataState.Failure(t)
         }
     }
 
