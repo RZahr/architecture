@@ -11,13 +11,33 @@ class UseCaseHandler() {
         useCase.useCaseCallback = UiCallbackWrapper(callback, this)
         useCase.run()
     }
+    /*example
+    *
+    * useCaseHandler.execute(getBundles, GetBundlesUseCase.RequestValues(),
+                object : UseCase.UseCaseCallback<GetBundlesUseCase.ResponseValue> {
 
-    fun <T : UseCase.RequestValues, R : UseCase.ResponseValue> executeN(UseCaseN: UseCase<T, R>, values: T, liveData: LiveData<LiveDataState<R>>) {
+                    override fun onSuccess(response: GetBundlesUseCase.ResponseValue) {
+                        bundlesLiveData as MutableLiveData
+                        bundlesLiveData.value = response.bundles
+                    }
+
+                    override fun onError(t: Throwable) {
+                        bundlesLiveData as MutableLiveData
+                        bundlesLiveData.value = null
+                    }
+                })
+    * */
+
+    fun <T : UseCase.RequestValues, R : UseCase.ResponseValue> executeWithLiveData(UseCaseN: UseCase<T, R>, values: T, liveData: LiveData<LiveDataState<R>>) {
 
         UseCaseN.requestValues = values
         UseCaseN.useCaseCallbackN = UiCallbackWrapperN(liveData)
         UseCaseN.run()
     }
+    /*example
+    *
+    *  useCaseHandler.executeWithLiveData(getMessages, requestValue, messagesLiveData)
+    * */
 
     fun <T : UseCase.RequestValues, R : UseCase.ResponseValue> finish(useCase: UseCase<T, R>) {
         useCase.onClear()
