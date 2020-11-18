@@ -32,6 +32,7 @@ class UseCaseHandler() {
 
         UseCaseN.requestValues = values
         UseCaseN.useCaseCallbackN = UiCallbackWrapperN(liveData)
+        UseCaseN.useCaseCallbackN?.onLoading()
         UseCaseN.run()
     }
     /*example
