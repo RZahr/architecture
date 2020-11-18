@@ -62,6 +62,11 @@ class UseCaseHandler() {
             liveData as MutableLiveData
             liveData.value = LiveDataState.Failure(t)
         }
+
+        override fun onLoading() {
+            liveData as MutableLiveData
+            liveData.value = LiveDataState.Loading
+        }
     }
 
     private class UiCallbackWrapper<V : UseCase.ResponseValue>(private val mCallback: UseCase.UseCaseCallback<V>, private val mUseCaseHandler: UseCaseHandler) : UseCase.UseCaseCallback<V> {
