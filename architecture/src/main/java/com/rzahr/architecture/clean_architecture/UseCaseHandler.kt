@@ -15,7 +15,7 @@ class UseCaseHandler() {
     fun <T : UseCase.RequestValues, R : UseCase.ResponseValue> executeN(UseCaseN: UseCase<T, R>, values: T, liveData: LiveData<LiveDataState<R>>) {
 
         UseCaseN.requestValues = values
-        UseCaseN.useCaseCallback = UiCallbackWrapperN(liveData)
+        UseCaseN.useCaseCallbackN = UiCallbackWrapperN(liveData)
         UseCaseN.run()
     }
 
@@ -31,16 +31,16 @@ class UseCaseHandler() {
         useCaseCallback.onError(t)
     }
 
-    private class UiCallbackWrapperN<V : UseCase.ResponseValue>(private val liveData: LiveData<LiveDataState<V>>) : UseCase.UseCaseCallback<V> {
+    private class UiCallbackWrapperN<V : UseCase.ResponseValue>(private val liveData: LiveData<LiveDataState<V>>) : UseCase.UseCaseCallbackN<V> {
 
         override fun onSuccess(response: V) {
             liveData as MutableLiveData
             liveData.value = LiveDataState.Success(response)
         }
 
-        override fun onError(t: Throwable) {
+        override fun onError(t: LiveDataState.Failure) {
             liveData as MutableLiveData
-            liveData.value = LiveDataState.Failure(t)
+            liveData.value = t
         }
     }
 

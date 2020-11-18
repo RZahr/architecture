@@ -5,6 +5,7 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
     var requestValues: Q? = null
 
     var useCaseCallback: UseCaseCallback<P>? = null
+    var useCaseCallbackN: UseCaseCallbackN<P>? = null
 
     internal fun run() {
         execute(requestValues)
@@ -31,5 +32,10 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
     interface UseCaseCallback<R> {
         fun onSuccess(response: R)
         fun onError(t: Throwable)
+    }
+
+    interface UseCaseCallbackN<R> {
+        fun onSuccess(response: R)
+        fun onError(t: LiveDataState.Failure)
     }
 }
