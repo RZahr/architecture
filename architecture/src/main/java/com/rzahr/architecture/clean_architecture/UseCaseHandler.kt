@@ -9,6 +9,7 @@ class UseCaseHandler() {
 
         useCase.requestValues = values
         useCase.useCaseCallback = UiCallbackWrapper(callback, this)
+        useCase.useCaseCallback?.onLoading()
         useCase.run()
     }
 
