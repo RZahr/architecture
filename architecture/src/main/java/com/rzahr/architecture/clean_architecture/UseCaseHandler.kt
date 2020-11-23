@@ -11,6 +11,8 @@ class UseCaseHandler() {
         useCase.useCaseCallback = UiCallbackWrapper(callback, this)
         useCase.run()
     }
+
+
     /*example
     *
     * useCaseHandler.execute(getBundles, GetBundlesUseCase.RequestValues(),
@@ -52,6 +54,10 @@ class UseCaseHandler() {
         useCaseCallback.onError(t)
     }
 
+    private fun <V : UseCase.ResponseValue> notifyLoading(useCaseCallback: UseCase.UseCaseCallback<V>) {
+        useCaseCallback.onLoading()
+    }
+
     private class UiCallbackWrapperN<V : UseCase.ResponseValue>(private val liveData: LiveData<LiveDataState<V>>) : UseCase.UseCaseCallbackN<V> {
 
         override fun onSuccess(response: V) {
@@ -76,9 +82,12 @@ class UseCaseHandler() {
             mUseCaseHandler.notifyResponse(response, mCallback)
         }
 
-
         override fun onError(t: Throwable) {
             mUseCaseHandler.notifyError(mCallback, t)
+        }
+
+        override fun onLoading() {
+            mUseCaseHandler.notifyLoading(mCallback)
         }
     }
 
