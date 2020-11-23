@@ -2,7 +2,8 @@ package com.rzahr.architecture.clean_architecture
 
 abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
 
-    var requestValues: Q? = null
+    //var requestValues: Q? = null
+    lateinit var requestValues: Q
 
     var useCaseCallback: UseCaseCallback<P>? = null
     var useCaseCallbackN: UseCaseCallbackN<P>? = null
@@ -17,7 +18,8 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
 
     protected abstract fun clearUseCase()
 
-    protected abstract fun execute(requestValues: Q?)
+    protected abstract fun execute(requestValues: Q)
+  //  protected abstract fun execute(requestValues: Q?)
 
     /**
      * Data passed to a request.

@@ -19,24 +19,24 @@ abstract class MVVMFragment(private val layoutId: Int): Fragment() {
 
     fun <T> MutableLiveData<T>.observeOn(observer: Observer<T>) {
         @Suppress("UNCHECKED_CAST")
-        observe(this@MVVMFragment, observer)
+        observe(viewLifecycleOwner, observer)
     }
 
     fun <T> MutableLiveData<T>.observe(completion: (it: T) -> Unit) {
         @Suppress("UNCHECKED_CAST")
-        observe(this@MVVMFragment, {
+        observe(viewLifecycleOwner, {
             completion(it)
         })
     }
 
     fun <T> LiveData<T>.observeOn(observer: Observer<T>) {
         @Suppress("UNCHECKED_CAST")
-        observe(this@MVVMFragment, observer)
+        observe(viewLifecycleOwner, observer)
     }
 
     fun <T> LiveData<T>.observe(completion: (it: T) -> Unit) {
         @Suppress("UNCHECKED_CAST")
-        observe(this@MVVMFragment, {
+        observe(viewLifecycleOwner, {
             completion(it)
         })
     }
