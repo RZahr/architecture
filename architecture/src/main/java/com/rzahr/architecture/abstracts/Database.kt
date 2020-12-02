@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
-class Database @Inject constructor(@ApplicationContext val context: Context) {
+class Database constructor(val context: Context) {
 
     var myDataBase: SQLiteDatabase? = null
 

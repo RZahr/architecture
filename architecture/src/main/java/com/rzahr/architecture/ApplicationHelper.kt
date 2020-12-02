@@ -9,7 +9,6 @@ import android.os.Bundle
 import com.rzahr.architecture.abstracts.Database
 import com.rzahr.architecture.utils.QuickDBUtils
 import java.lang.ref.WeakReference
-import javax.inject.Inject
 
 /**
  * @author Rashad Zahr
@@ -17,7 +16,7 @@ import javax.inject.Inject
  * this class is *required* to be created from the application class
  */
 @Suppress("unused")
-class ApplicationHelper @Inject constructor(var quickPref: QuickPref, val database: Database, val application: Application): Application.ActivityLifecycleCallbacks {
+class ApplicationHelper constructor(val application: Application): Application.ActivityLifecycleCallbacks {
 
     init {
         instance = this
@@ -25,6 +24,8 @@ class ApplicationHelper @Inject constructor(var quickPref: QuickPref, val databa
         QuickDBUtils.databaseExist()
     }
 
+    val quickPref: QuickPref = QuickPref(application)
+    val database: Database = Database(application)
     var currentActivity: WeakReference<Activity?>? = null
 
     override fun onActivityPaused(activity: Activity?) {

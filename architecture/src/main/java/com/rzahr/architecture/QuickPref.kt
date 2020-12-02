@@ -2,17 +2,13 @@ package com.rzahr.architecture
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-
 /**
  * @author Rashad Zahr
  *
  * class used for shared preference
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
-class QuickPref @Inject constructor(@ApplicationContext val context: Context) {
-
+class QuickPref(val context: Context) {
 
     /**
      * set shared boolean value.
