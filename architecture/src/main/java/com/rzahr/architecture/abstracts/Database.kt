@@ -3,10 +3,7 @@ package com.rzahr.architecture.abstracts
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
-import javax.inject.Inject
-
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class Database constructor(val context: Context) {

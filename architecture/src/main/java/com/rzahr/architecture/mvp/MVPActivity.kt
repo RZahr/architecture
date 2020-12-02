@@ -19,13 +19,12 @@ abstract class MVPActivity<P : MVPPresenterInterface<*>>: AppCompatActivity(), M
     private var lastEventTime = System.currentTimeMillis()
     private var initialized = false
 
-    protected abstract fun onActivityInject()
+    protected abstract fun onPresenterShouldAttachView()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
-
-        onActivityInject()
+        onPresenterShouldAttachView()
     }
 
     override fun setPresenter(presenter: MVPPresenter<*, *>) {

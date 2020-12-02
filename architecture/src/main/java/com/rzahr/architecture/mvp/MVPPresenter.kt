@@ -13,7 +13,7 @@ import javax.inject.Inject
  * base presenter class
  */
 @Suppress("unused")
-open class MVPPresenter<V : MVPViewInterface, M: MVPModel> @Inject constructor(): MVPPresenterInterface<V>, LifecycleObserver {
+open class MVPPresenter<V : MVPViewInterface, M: MVPModel> : MVPPresenterInterface<V>, LifecycleObserver {
 
     @Inject lateinit var model: M
     private var lastEventTime = System.currentTimeMillis()
