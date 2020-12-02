@@ -20,15 +20,15 @@ object QuickDBUtils {
     fun databaseExist(): Boolean {
 
         val dbName = "Database.db"
-        return if (ApplicationHelper.baseContext().getDatabasePath(dbName).exists()) true
+        return if (ApplicationHelper.applicationContext().getDatabasePath(dbName).exists()) true
 
         else {
 
-            if (!Arrays.asList(*ApplicationHelper.baseContext().assets.list("")).contains(dbName)) return false
+            if (!Arrays.asList(*ApplicationHelper.applicationContext().assets.list("")).contains(dbName)) return false
 
             createDirectory(getDBPath(), false)
 
-            val inputStream = ApplicationHelper.baseContext().assets.open(dbName)
+            val inputStream = ApplicationHelper.applicationContext().assets.open(dbName)
             val out = FileOutputStream(File(getDBPath() + dbName))
             val buf = ByteArray(1024)
             while (inputStream.read(buf) > 0) out.write(buf)
@@ -55,9 +55,7 @@ object QuickDBUtils {
         if (success) {
 
             val noMedia = File(
-                "$path/" + ApplicationHelper.baseContext().resources.getString(
-                    R.string.NO_MEDIA
-                ))
+                "$path/" + ApplicationHelper.applicationContext().getString(R.string.NO_MEDIA))
 
             if (!noMedia.exists() && withNoMedia) {
                 try {
@@ -117,6 +115,6 @@ object QuickDBUtils {
      */
     fun getDBPath(): String {
 
-        return ApplicationHelper.baseContext().applicationInfo.dataDir + "/databases/"
+        return ApplicationHelper.applicationContext().applicationInfo.dataDir + "/databases/"
     }
 }

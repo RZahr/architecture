@@ -63,7 +63,7 @@ class ApplicationHelper constructor(val application: Application): Application.A
 
         fun currentActivity() = instance?.currentActivity?.get()
 
-        fun baseContext(): Context = instance?.application!!.baseContext
+        fun baseContext(): Context? = instance?.application?.baseContext
 
         fun applicationContext() = instance!!.application
 
