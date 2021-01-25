@@ -1,7 +1,7 @@
 package com.rzahr.architecture.mvp
 
-import com.rzahr.architecture.ApplicationHelper
 import com.rzahr.architecture.abstracts.Database
+import javax.inject.Inject
 
 /**
  * @author Rashad Zahr
@@ -9,7 +9,7 @@ import com.rzahr.architecture.abstracts.Database
  * new base model class helper for performing SQLITE queries
  */
 @Suppress("unused")
-abstract class MVPModel {
+open class MVPModel @Inject constructor() {
 
-    val mDatabase: Database? = ApplicationHelper.database()
+    @Inject lateinit var mDatabase: Database
 }

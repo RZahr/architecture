@@ -1,5 +1,7 @@
 package com.rzahr.architecture.clean_architecture
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
 
@@ -7,9 +9,9 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
     lateinit var requestValues: Q
 
     var useCaseCallback: UseCaseCallback<P>? = null
-    var useCaseCallbackN: UseCaseCallbackN<P>? = null
+    var useCaseLiveDataCallback: UseCaseLiveDataCallback<P>? = null
 
-    internal suspend fun run() {
+    internal suspend fun run() = withContext(Dispatchers.IO) {
         execute(requestValues)
     }
 
@@ -20,23 +22,21 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
     protected abstract fun clearUseCase()
 
     protected abstract suspend fun execute(requestValues: Q)
-    //  protected abstract fun execute(requestValues: Q?)
-
 
     interface RequestValues
 
     interface ResponseValue
 
     interface UseCaseCallback<R> {
-        fun onSuccess(response: R)
-        fun onError(t: Throwable)
-        fun onLoading()
+        suspend fun onSuccess(response: R)
+        suspend fun onError(t: Throwable)
+        suspend fun onLoading()
     }
 
-    interface UseCaseCallbackN<R> {
-        fun onSuccess(response: R)
-        fun onError(t: Throwable)
-        fun onLoading()
+    interface UseCaseLiveDataCallback<R> {
+        suspend fun onSuccess(response: R)
+        suspend fun onError(t: Throwable)
+        suspend fun onLoading()
     }
 }
 

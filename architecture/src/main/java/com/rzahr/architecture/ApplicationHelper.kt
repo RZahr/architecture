@@ -6,7 +6,6 @@ import android.app.IntentService
 import android.app.Service
 import android.content.Context
 import android.os.Bundle
-import com.rzahr.architecture.abstracts.Database
 import com.rzahr.architecture.utils.QuickDBUtils
 import java.lang.ref.WeakReference
 
@@ -25,7 +24,6 @@ class ApplicationHelper constructor(val application: Application): Application.A
     }
 
     val quickPref: QuickPref = QuickPref(application)
-    val database: Database = Database(application)
     var currentActivity: WeakReference<Activity?>? = null
 
     override fun onActivityPaused(activity: Activity?) {
@@ -59,7 +57,7 @@ class ApplicationHelper constructor(val application: Application): Application.A
 
         fun pref() = instance!!.quickPref
 
-        fun database() = instance?.database
+        //fun database() = instance?.database
 
         fun currentActivity() = instance?.currentActivity?.get()
 

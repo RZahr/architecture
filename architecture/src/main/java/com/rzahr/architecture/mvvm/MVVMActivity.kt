@@ -16,6 +16,8 @@ abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, 
 
     //for custom coroutine private lateinit var job: Job
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
@@ -53,6 +55,20 @@ abstract class MVVMActivity: AppCompatActivity() {// custom coroutine created}, 
     }
 
 
+    //example on using observe:
+    /*viewModel.mutable1.observe { state ->
+
+            when (state) {
+                is LiveDataState.Success -> {
+                    test_Tv?.text = state.response.resultString
+                }
+                is LiveDataState.Failure -> {
+                }
+                is LiveDataState.Loading -> {
+                    test_Tv?.text = "Loading..."
+                }
+            }
+        }*/
 
     //for custom coroutine override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main
 

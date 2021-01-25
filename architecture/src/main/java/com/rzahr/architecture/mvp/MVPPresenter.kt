@@ -3,6 +3,7 @@ package com.rzahr.architecture.mvp
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
+import com.rzahr.architecture.clean_architecture.UseCaseHandler
 import com.rzahr.architecture.utils.MIN_GUARD_INTERVAL
 import java.lang.ref.WeakReference
 import javax.inject.Inject
@@ -16,6 +17,7 @@ import javax.inject.Inject
 open class MVPPresenter<V : MVPViewInterface, M: MVPModel> : MVPPresenterInterface<V>, LifecycleObserver {
 
     @Inject lateinit var model: M
+    @Inject lateinit var useCaseHandler: UseCaseHandler
     private var lastEventTime = System.currentTimeMillis()
     private var initialized = false
     private var stateBundle: Bundle? = null
