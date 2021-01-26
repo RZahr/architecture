@@ -1,15 +1,10 @@
 package com.rzahr.architecture.mvvm
 
 import android.os.Bundle
-import android.view.View.inflate
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.rzahr.architecture.statusBarAdapt
 
@@ -23,15 +18,16 @@ abstract class MVVMActivity<b: ViewBinding>: AppCompatActivity() {// custom coro
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
-        onBindToView()
+        onInitBinding()
+
+        val view = binding.root
+        setContentView(view)
     }
 
     /**
      * @sample: binding = ActivityMainBinding.inflate(layoutInflater)
-                val view = binding.root
-                setContentView(view)
      */
-    protected abstract fun onBindToView()
+    protected abstract fun onInitBinding()
 
 
     override fun onDestroy() {

@@ -26,11 +26,16 @@ abstract class MVPActivity<b: ViewBinding, P : MVPPresenterInterface<*>>: AppCom
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
-        onBindToView()
+        onInitBinding()
+        val view = binding.root
+        setContentView(view)
         onPresenterShouldAttachView()
     }
 
-    protected abstract fun onBindToView()
+    /**
+     * @sample: binding = ActivityMainBinding.inflate(layoutInflater)
+     */
+    protected abstract fun onInitBinding()
 
     override fun setPresenter(presenter: MVPPresenter<*, *>) {
 
