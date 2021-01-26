@@ -25,7 +25,7 @@ open class MVPPresenter<V : MVPViewInterface, M: MVPModel> : MVPPresenterInterfa
     private val isActivityAttached: Boolean get() = mActivityWeakReference != null && mActivityWeakReference?.get() != null
 
     val view: V? get() = mViewWeakReference?.get()
-    val activity: MVPActivity<*>? get() = mActivityWeakReference?.get()
+    val activity: MVPActivity<*,*>? get() = mActivityWeakReference?.get()
 
     override fun getStateBundle(): Bundle? {
         if (stateBundle == null) stateBundle = Bundle()
@@ -48,9 +48,9 @@ open class MVPPresenter<V : MVPViewInterface, M: MVPModel> : MVPPresenterInterfa
     }
 
     private var mViewWeakReference: WeakReference<V>? = null
-    private var mActivityWeakReference: WeakReference<MVPActivity<*>>? = null
+    private var mActivityWeakReference: WeakReference<MVPActivity<*,*>>? = null
 
-    override fun attachView(view: V, activity: MVPActivity<*>) {
+    override fun attachView(view: V, activity: MVPActivity<*,*>) {
         if (!isViewAttached) {
             mViewWeakReference = WeakReference(view)
             view.setPresenter(this)

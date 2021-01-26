@@ -10,7 +10,7 @@ import androidx.lifecycle.Lifecycle
  */
 interface MVPPresenterInterface<V : MVPViewInterface> {
 
-    fun attachView(view: V, activity: MVPActivity<*>)
+    fun attachView(view: V, activity: MVPActivity<*,*>)
     fun detachView()
     fun attachLifecycle(lifecycle: Lifecycle)
     fun onPresenterCreated()

@@ -2,6 +2,7 @@ package com.rzahr.architecture.mvp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.rzahr.architecture.statusBarAdapt
 import com.rzahr.architecture.utils.MIN_GUARD_INTERVAL
 import javax.inject.Inject
@@ -12,9 +13,10 @@ import javax.inject.Inject
  * base activity
  */
 @Suppress("unused")
-abstract class MVPActivity<P : MVPPresenterInterface<*>>: AppCompatActivity(), MVPViewInterface {
+abstract class MVPActivity<b: ViewBinding, P : MVPPresenterInterface<*>>: AppCompatActivity(), MVPViewInterface {
 
     @Inject lateinit var mPresenter: P
+    lateinit var binding: b
     private var presenter: MVPPresenter<*, *>? = null
     private var lastEventTime = System.currentTimeMillis()
     private var initialized = false
@@ -24,8 +26,11 @@ abstract class MVPActivity<P : MVPPresenterInterface<*>>: AppCompatActivity(), M
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
+        onBindToView()
         onPresenterShouldAttachView()
     }
+
+    protected abstract fun onBindToView()
 
     override fun setPresenter(presenter: MVPPresenter<*, *>) {
 
