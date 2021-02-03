@@ -9,19 +9,19 @@ import androidx.viewbinding.ViewBinding
 import com.rzahr.architecture.statusBarAdapt
 
 @Suppress("unused")
-abstract class MVVMActivity<b: ViewBinding>: AppCompatActivity() {// custom coroutine created}, CoroutineScope {
+abstract class MVVMActivity<b: ViewBinding?>: AppCompatActivity() {// custom coroutine created}, CoroutineScope {
 
     //for custom coroutine private lateinit var job: Job
 
-    lateinit var binding: b
+    var binding: b? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         statusBarAdapt()
         onInitBinding()
 
-        val view = binding.root
-        setContentView(view)
+        val view = binding?.root
+        if (view != null) setContentView(view)
     }
 
     /**
