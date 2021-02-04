@@ -60,7 +60,7 @@ class UseCaseHandler @Inject constructor() {
             }
         }
 
-        override suspend fun onLoading() {
+        override suspend fun onLoading(message: String) {
             withContext(Dispatchers.Main) {
                 liveData as MutableLiveData
                 liveData.value = LiveDataState.Loading
@@ -82,7 +82,7 @@ class UseCaseHandler @Inject constructor() {
             }
         }
 
-        override suspend fun onLoading() {
+        override suspend fun onLoading(message: String) {
             withContext(Dispatchers.Main) {
                 mUseCaseHandler.notifyLoading(mCallback)
             }
