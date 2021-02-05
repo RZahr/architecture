@@ -40,8 +40,8 @@ class UseCaseHandler @Inject constructor() {
         useCaseCallback.onError(t)
     }
 
-    private suspend fun <V : UseCase.ResponseValue> notifyLoading(useCaseCallback: UseCase.UseCaseCallback<V>) {
-        useCaseCallback.onLoading()
+    private suspend fun <V : UseCase.ResponseValue> notifyLoading(message: String, useCaseCallback: UseCase.UseCaseCallback<V>) {
+        useCaseCallback.onLoading(message)
     }
 
     private class UiCallbackWrapperN<V : UseCase.ResponseValue>(private val liveData: LiveData<LiveDataState<V>>) : UseCase.UseCaseLiveDataCallback<V> {
@@ -63,7 +63,7 @@ class UseCaseHandler @Inject constructor() {
         override suspend fun onLoading(message: String) {
             withContext(Dispatchers.Main) {
                 liveData as MutableLiveData
-                liveData.value = LiveDataState.Loading
+                liveData.value = LiveDataState.Loading(message)
             }
         }
     }
@@ -84,7 +84,7 @@ class UseCaseHandler @Inject constructor() {
 
         override suspend fun onLoading(message: String) {
             withContext(Dispatchers.Main) {
-                mUseCaseHandler.notifyLoading(mCallback)
+                mUseCaseHandler.notifyLoading(message, mCallback)
             }
         }
     }

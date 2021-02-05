@@ -3,7 +3,7 @@ package com.rzahr.architecture.clean_architecture
 sealed class LiveDataState<out T> {
     data class Success<out T>(val response: T) : LiveDataState<T>()
     data class Failure(val error: Throwable) : LiveDataState<Nothing>()
-    object Loading: LiveDataState<Nothing>()
+    data class Loading(val message: String): LiveDataState<Nothing>()
 
     fun <T> result(fallback: T): T {
         @Suppress("UNCHECKED_CAST")
