@@ -1,5 +1,6 @@
 package com.rzahr.architecture
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -9,9 +10,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 fun AppCompatActivity.statusBarAdapt() {
 
@@ -25,7 +28,13 @@ fun AppCompatActivity.statusBarAdapt() {
     }
 }
 
+/**
+ * @return the file URI
+ */
+fun File.getFileURI(context: Context): Uri {
 
+    return if (Build.VERSION.SDK_INT >= 24) FileProvider.getUriForFile(context, context.packageName + ".provider", this) else Uri.fromFile(this)
+}
 fun AppCompatActivity.createLinearRecyclerView(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>, withDecoration: Boolean = false) {
 
     recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
