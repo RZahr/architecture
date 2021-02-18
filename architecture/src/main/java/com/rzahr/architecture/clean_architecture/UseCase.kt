@@ -28,15 +28,15 @@ abstract class UseCase<Q : UseCase.RequestValues, P : UseCase.ResponseValue> {
     interface ResponseValue
 
     interface UseCaseCallback<R> {
-        suspend fun onSuccess(response: R)
-        suspend fun onError(t: Throwable)
-        suspend fun onLoading(message: String = "")
+        suspend fun onSuccess(response: R) {}
+        suspend fun onError(t: Throwable) {}
+        suspend fun onLoading(message: String = "") {}
     }
 
     interface UseCaseLiveDataCallback<R> {
-        suspend fun onSuccess(response: R)
-        suspend fun onError(t: Throwable)
-        suspend fun onLoading(message: String = "")
+        suspend fun onSuccess(response: R) {}
+        suspend fun onError(t: Throwable) {}
+        suspend fun onLoading(message: String = "") {}
     }
 }
 
